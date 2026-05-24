@@ -1,7 +1,7 @@
 from django.db import models
 from vehiculo.models import Vehiculo
 from servicio.models import Servicio
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
@@ -26,7 +26,17 @@ class Cita(models.Model):
         Finalizada='Finalizada',_("Finalizada")
     estado_cita=models.CharField(max_length=10,choices=EstadoCita.choices,default=EstadoCita.Programada,verbose_name="Estado")
     def __str__(self):
-        return f"({self.fecha_cita}){self.placa}{self.nombreservicios}"
+        try:
+            placa = self.placa
+        except ObjectDoesNotExist:
+            placa = f"Vehiculo #{self.placa_id} (No existe)"
+            
+        try:
+            servicio = self.nombreservicios
+        except ObjectDoesNotExist:
+            servicio = f"Servicio #{self.nombreservicios_id} (No existe)"
+            
+        return f"({self.fecha_cita}) {placa} {servicio}"
      
     class Meta:
         verbose_name_plural = "Citas"

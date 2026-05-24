@@ -54,6 +54,6 @@ class Vehiculo(models.Model):
         INACTIVO='0',_("Inactivo")
     estado=models.CharField(max_length=10,choices=Estado.choices,default=Estado.ACTIVO,verbose_name="Estado")
     def __str__(self):
-        return f"({self.placa}){self.identificacion}"
+        return f"({self.placa}) {self.nombre_linea}"
     class Meta:
         verbose_name_plural = "vehiculo"

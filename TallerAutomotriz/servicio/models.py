@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 import datetime
@@ -34,6 +34,16 @@ class Servicio(models.Model):
     nombrerepuesto=models.ForeignKey(Repuesto, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Costo Repuesto")
     nombreservicio=models.ForeignKey(Detalle_servicio,on_delete=models.SET_NULL,null=True,blank=True,verbose_name="Costo Servicio")
     def __str__(self):
-        return f"({self.nombrerepuesto}){self.nombreservicio}"
+        try:
+            repuesto = self.nombrerepuesto
+        except ObjectDoesNotExist:
+            repuesto = f"Repuesto #{self.nombrerepuesto_id} (No existe)"
+            
+        try:
+            servicio = self.nombreservicio
+        except ObjectDoesNotExist:
+            servicio = f"Servicio #{self.nombreservicio_id} (No existe)"
+            
+        return f"({repuesto}){servicio}"
     class Meta:
         verbose_name_plural = "Servicio"
