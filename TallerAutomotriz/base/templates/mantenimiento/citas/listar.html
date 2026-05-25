@@ -27,7 +27,7 @@
                     <td>{{ cita.hora_cita }}</td>
                     <td>{{ cita.contacto }}</td>
                     <td>{{ cita.descripcion_cita }}</td>
-                    <td>{{ cita.nombreservicios }}</td>
+                    <td>{{ cita.nombreservicios|default_if_none:"—" }}</td>
                     <td>{{ cita.estado_cita }}</td>
                     <td>
                       <button type="button" onclick="changeURL('{{ cita.id }}')" data-taller-pinautos="{{ cita.id }}" class="btnEliminar btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConf">

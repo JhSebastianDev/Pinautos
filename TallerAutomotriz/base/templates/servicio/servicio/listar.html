@@ -9,7 +9,6 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Fecha Registo</th>
                   <th>Mecanico</th>
                   <th>kilometraje</th>
                   <th>Estado Vehiculo</th>
@@ -24,13 +23,12 @@
                   {% if servicio.estado != "0" %}
                     <tr>
                       <td>{{ servicio.id }}</td>
-                      <td>{{ servicio.fecha_servicio }}</td>
-                      <td>{{ servicio.nombres }}</td>
+                      <td>{{ servicio.nombres|default_if_none:"—" }}</td>
                       <td>{{ servicio.kilometraje }}</td>
                       <td>{{ servicio.estado_vehiculo}}</td>
                       <td>{{ servicio.observaciones}}</td>
-                      <td>{{ servicio.nombrerepuesto}}</td>
-                      <td>{{ servicio.nombreservicio}}</td>
+                      <td>{{ servicio.nombrerepuesto|default_if_none:"—" }}</td>
+                      <td>{{ servicio.nombreservicio|default_if_none:"—" }}</td>
                       <td>
                         <button type="button" onclick="changeURL('{{ servicio.id }}')" data-taller-pinautos="{{ servicio.id }}" class="btnEliminar btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConf">
                           <i class="bi bi-trash"></i>
