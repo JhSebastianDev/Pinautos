@@ -35,15 +35,21 @@ class Servicio(models.Model):
     nombreservicio=models.ForeignKey(Detalle_servicio,on_delete=models.SET_NULL,null=True,blank=True,verbose_name="Costo Servicio")
     def __str__(self):
         try:
-            repuesto = self.nombrerepuesto
-        except ObjectDoesNotExist:
-            repuesto = f"Repuesto #{self.nombrerepuesto_id} (No existe)"
-            
+            detalle = self.nombreservicio
+        except Detalle_servicio.DoesNotExist:
+            detalle = None
+
+        if detalle is not None:
+            return str(detalle)
+
         try:
-            servicio = self.nombreservicio
-        except ObjectDoesNotExist:
-            servicio = f"Servicio #{self.nombreservicio_id} (No existe)"
-            
-        return f"({repuesto}){servicio}"
+            repuesto = self.nombrerepuesto
+        except Repuesto.DoesNotExist:
+            repuesto = None
+
+        if repuesto is not None:
+            return str(repuesto)
+
+        return f"Servicio #{self.pk}"
     class Meta:
         verbose_name_plural = "Servicio"
