@@ -1,19 +1,105 @@
 {% extends 'partials/body.html' %}
 {% block contenido %}
-{% load static %}
-<div class= "text-center">
-  <h2> Taller Automotriz Pinautos </h2>
-  <h3>Bienvenido al sistema, {{ user.username|title }}</h3>
-  <h6> Que te gustaria hacer hoy</h6>
 
-      
-  </div>    
-</section>
+<div class="py-4">
+  <div class="text-center mb-4">
+    <h2 class="mb-1">Taller Automotriz Pinautos</h2>
+    <h5 class="mb-1">Bienvenido al sistema, {{ user.username|title }}</h5>
+    <div class="text-muted">¿Qué te gustaría hacer hoy?</div>
+  </div>
 
-  
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted">Usuarios</div>
+              <div class="fs-3 fw-semibold">{{ usuarios|default:0 }}</div>
+            </div>
+            <i class="bi bi-person-circle fs-2"></i>
+          </div>
+          <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="{% url 'usuarios' %}">Ver usuarios</a>
+        </div>
+      </div>
+    </div>
 
-  
-  
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted">ARL</div>
+              <div class="fs-3 fw-semibold">{{ arls|default:0 }}</div>
+            </div>
+            <i class="bi bi-shield-check fs-2"></i>
+          </div>
+          <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="{% url 'arls' %}">Ver ARL</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted">Repuestos</div>
+              <div class="fs-3 fw-semibold">{{ repuestos|default:0 }}</div>
+            </div>
+            <i class="bi bi-wrench-adjustable fs-2"></i>
+          </div>
+          <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="{% url 'repuestos' %}">Ver repuestos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted">Marcas de repuesto</div>
+              <div class="fs-3 fw-semibold">{{ marcarepuestos|default:0 }}</div>
+            </div>
+            <i class="bi bi-tags fs-2"></i>
+          </div>
+          <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="{% url 'marcarepuestos' %}">Ver marcas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="fw-semibold"><i class="bi bi-grid-3x3-gap"></i> Accesos rápidos</div>
+    </div>
+    <div class="card-body">
+      <div class="row g-2">
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'clientes' %}"><i class="bi bi-people"></i> Clientes</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'citas' %}"><i class="bi bi-calendar-week"></i> Citas</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'ventas' %}"><i class="bi bi-receipt"></i> Ventas</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'servicios' %}"><i class="bi bi-tools"></i> Servicios</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'detalleservicios' %}"><i class="bi bi-list-check"></i> Detalle servicio</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'vehiculos' %}"><i class="bi bi-car-front-fill"></i> Vehículos</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <a class="btn btn-outline-secondary w-100 text-start" href="{% url 'lineas' %}"><i class="bi bi-diagram-3"></i> Líneas</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
- 
+
 {% endblock contenido %}
